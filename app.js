@@ -1,19 +1,22 @@
+// const cors = require('cors');
+// app.use(cors({ credentials: true, origin: "http://127.0.0.1:5501" }));
+
 const express = require('express');
-const session = require('express-session'); // Import the express-session middleware
-const bodyParser = require('body-parser');
-const cookieParser = require("cookie-parser");
-const cors = require('cors');
 const app = express();
-const port = 3001;
-const oneDay = 1000 * 30;
-const userRoutes = require('./controller/routes/userRoutes');
-const mongoose = require('mongoose');
-app.use(cors({ credentials: true, origin: "http://127.0.0.1:5501" }));
-app.use(cookieParser());
+
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://akashbahri90:wi5ULQterlZTWkaN@cluster0.u97s9sw.mongodb.net/Node');
 app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 
 // Configure the express-session middleware
+const session = require('express-session'); 
+const oneDay = 1000 * 30;
 app.use(session({
     secret: '76597608687669757',
     resave: false,
@@ -21,22 +24,18 @@ app.use(session({
     cookie: { maxAge: oneDay, secure: false, httpOnly: true },
 }));
 
-//----------------------------------------------------------
+const userRoutes = require('./routes/userRoutes');
+const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
+app.use('/users', userRoutes);
+app.use('/products', productRoutes);
+app.use('/cart', cartRoutes);
+app.use('/orders', orderRoutes);
 
 
-mongoose.connect('mongodb+srv://akashbahri90:wi5ULQterlZTWkaN@cluster0.u97s9sw.mongodb.net/Node');
-
-// const surveySchema = new mongoose.Schema({
-//     name: String,
-//     age: Number,
-//     color: String
-// });
-// const Survey = mongoose.model('Survey', surveySchema);
-
-app.set('view engine', 'ejs');
-app.use('/users',userRoutes);
-
-
+const port = 3001; 
 const hostname = '127.0.0.1';
 
 app.listen(port, hostname, () => console.log(`Example app listening on port http://${hostname}:${port}/`));

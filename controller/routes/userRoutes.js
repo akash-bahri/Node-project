@@ -64,4 +64,45 @@ router.get('/delete/:id', async (req, res) => {
   }
 });
 
+// Route to display the login form
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// Route to handle the login form
+router.post('/login', async (req, res) => {
+  try {
+    const user = await userService.loginUser(req.body);
+    req.session.user = user;
+    req.session.views = 1;
+    res.redirect('/users');
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+// Route to display the signup form
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
+// Route to handle the signup form
+router.post('/signup', async (req, res) => {
+  try {
+    await userService.createUser(req.body);
+    res.redirect('/users/login');
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+// Route to handle the logout
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+
+
+//
+
 module.exports = router;
