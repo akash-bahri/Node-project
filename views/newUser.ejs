@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create New User</title>
+</head>
+<body>
+  <h1>Create New User</h1>
+  <form method="POST" action="/users">
+    Name: <input type="text" name="name" required><br>
+    DOB: <input type="date" name="dob" required><br>
+    Email: <input type="email" name="email" required><br>
+    Active: <input type="checkbox" name="active"><br>
+    Password: <input type="password" name="password" required><br>
+    <input type="submit" value="Create User">
+  </form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit User</title>
+</head>
+<body>
+    <h1>Edit User</h1>
+    <form method="POST" action="/users/<%= user._id %>">
+        Name: <input type="text" name="name" value="<%= user.name %>"><br>
+        DOB: <input type="date" name="dob" value="<%= user.dob.toISOString().split('T')[0] %>"><br>
+        Email: <input type="email" name="email" value="<%= user.email %>"><br>
+        Active: <input type="checkbox" name="active" <%= user.active ? 'checked' : '' %>><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Update User">
+    </form>
+</body>
+</html>

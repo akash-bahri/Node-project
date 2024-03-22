@@ -1,5 +1,5 @@
 const express = require('express');
-const userService = require('../services/userService');
+const userService = require('../services/userService.js');
 const router = express.Router();
 
 // Route to display the form for creating a new user
@@ -11,6 +11,7 @@ router.get('/new', (req, res) => {
 router.post('/', async (req, res) => {
   try {
     req.body.active = req.body.active === 'on';
+    // console.log("1: "+JSON.stringify(req.body));
     await userService.createUser(req.body);
     res.redirect('/users');
   } catch (error) {
