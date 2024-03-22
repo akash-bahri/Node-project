@@ -2,8 +2,7 @@ const express = require('express');
 const cartService = require('../services/cartService');
 const router = express.Router();
 
-router.get('/:userId', cartService.getCart);
-router.post('/:userId', cartService.addToCart);
+
 // Add other routes as needed
 
 // Route to display the cart

@@ -2,8 +2,7 @@ const express = require('express');
 const orderService = require('../services/orderService');
 const router = express.Router();
 
-router.get('/:userId', orderService.getOrders);
-router.post('/:userId', orderService.createOrder);
+
 // Add other routes as needed
 
 // Route to display the orders

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Catalog</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <h1>Product Catalog</h1>
+    <ul>
+        <% products.forEach(function(product) { %>
+            <li>
+                <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                <h2><%= product.name %></h2>
+                <p><%= product.description %></p>
+                <p>Category: <%= product.category %></p>
+                <p>Price: <%= product.price %></p>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

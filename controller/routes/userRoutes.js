@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
   try {
     req.session.views++;
     const users = await userService.getAllUsers();
-    res.render('index', { users });
+    res.render('user', { users });
   } catch (error) {
     res.status(500).send(error.message);
   }

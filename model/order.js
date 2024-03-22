@@ -1,6 +1,8 @@
-const OrderSchema = new Schema({
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
-    products: [{ product: { type: Schema.Types.ObjectId, ref: 'Product' }, quantity: Number }],
+const mongoose = require('mongoose');
+
+const OrderSchema = new mongoose.Schema({
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    products: [{ product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' }, quantity: Number }],
     total: { type: Number, default: 0 },
     status: { type: String, default: 'Pending' },
 });

@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Users List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-  <h1>Users</h1>
-  <a href="/users/new">Create New User</a>
-  <ul>
-    <% users.forEach(function(user) { %>
-      <li>
-        <%= user.name %>
-        <a href="/users/edit/<%= user._id %>">Edit</a> |
-        <a href="/users/delete/<%= user._id %>">Delete</a>
-      </li>
-    <% }) %>
-  </ul>
+  <%- include('navbar.ejs') %>
+  hello
 </body>
 </html>

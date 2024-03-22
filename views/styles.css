@@ -1,0 +1,11 @@
+/* views/styles.css */
+body {
+  font-family: Arial, sans-serif;
+}
+h1 {
+  color: #333;
+}
+img {
+  width:auto ; /* Adjust as needed */
+  height: 150px;
+}

@@ -3,6 +3,7 @@
 
 const express = require('express');
 const app = express();
+app.use(express.static('views'));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -24,15 +25,19 @@ app.use(session({
     cookie: { maxAge: oneDay, secure: false, httpOnly: true },
 }));
 
-const userRoutes = require('./routes/userRoutes');
-const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require('./routes/cartRoutes');
-const orderRoutes = require('./routes/orderRoutes');
+const userRoutes = require('./controller/routes/userRoutes');
+const productRoutes = require('./controller/routes/productRoutes');
+const cartRoutes = require('./controller/routes/cartRoutes');
+const orderRoutes = require('./controller/routes/orderRoutes');
 
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
+
+app.get('/', function(req, res) {
+    res.render('user');
+});
 
 
 const port = 3001; 
