@@ -5,27 +5,40 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <%- include('navbar.ejs') %>
-    <h1>Your Orders</h1>
-    <ul>
-        <% if (orders && orders.length > 0) { %>
-            <% orders.forEach(function(order) { %>
-                <li>
-                    <h2>Order ID: <%= order._id %></h2>
-                    <ul>
-                        <% order.products.forEach(function(product) { %>
-                            <li>
-                                <h3><%= product.name %></h3>
-                                <p>Price: <%= product.price %></p>
-                                <p>Quantity: <%= product.quantity %></p>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </li>
-            <% }) %>
-        <% } else { %>
-            <p>You have no orders.</p>
-        <% } %>
-    </ul>
+    <div class="navbar-container">
+        <%- include('navbar.ejs') %>
+    </div>
+    <div class="orders-container">
+        <h1>Your Orders</h1>
+        <ul class="orders-list">
+            <% if (orders && orders.length > 0) { %>
+                <% orders.forEach(function(order) { %>
+                    <li class="order-item">
+                        <div class="order-header">
+                            <h2>Order ID: <%= order._id %></h2>
+                            <h3>Total: <%=order.total %> $</h3>
+                            <p>Status:<%=order.status %>  </p>
+                        </div>
+                        <ul class="product-list">
+                            <% order.products.forEach(function(product) { %>
+                                <li class="product-item">
+                                    <div class="product-details">
+                                        <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="order-img">
+                                        <h3><%= product.name %></h3>
+                                        <p>Price: <%= product.price %></p>
+                                        <p>Quantity: <%= product.quantity %></p>
+                                    </div>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </li>
+                <% }) %>
+            <% } else { %>
+                <div class="no-orders-message">
+                    <p>You have no orders.</p>
+                </div>
+            <% } %>
+        </ul>
+    </div>
 </body>
 </html>

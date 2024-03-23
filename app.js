@@ -39,7 +39,7 @@ app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
 
 app.get('/', function(req, res) {
-    res.render('index');
+    res.redirect('/products/catalog');
 });
 
 

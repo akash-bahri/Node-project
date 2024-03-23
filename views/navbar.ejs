@@ -1,11 +1,21 @@
-<!-- views/navbar.ejs -->
-<nav>
-  <a href="/products/catalog">Home</a>
-  <a href="/products/new">Add Product</a>
-  <a href="/users/login">Login</a>
-  <a href="/cart">Cart</a>
-  <a href="/orders">Order</a>
-  <a href="/users/logout">logout</a>
-  <!-- Add other links as needed -->
-  <span><%= session.user ? session.user.name : '' %></span>
-</nav>
+<div class="navbar">
+  <div class="left">
+    <a href="/products/catalog">Home</a>
+    <% if (session.user && session.user.role === 'admin') { %>
+      <a href="/products/new">Add Product</a>
+      <a href="/orders/all">All Orders</a>
+    <% } %>
+    <% if (session.user && session.user.role === 'user') { %>
+    <a href="/cart">Cart</a>
+    <a href="/orders">Order</a>
+    <% } %>
+  </div>
+  <% if (session.user) { %>
+    <span><%= session.user.name %></span>
+  <div class="right">
+      <a href="/users/logout">Logout</a>
+    <% } else { %>
+      <a href="/users/login">Login</a>
+    <% } %>
+  </div>
+</div>

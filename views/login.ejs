@@ -5,22 +5,35 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <%- include('navbar.ejs') %>
-    <h1>Login</h1>
-    <div>
-    <form method="POST" action="/users/login">
-        Email: <input type="email" name="email" required><br>
-        Password: <input type="password" name="password" required><br>
-        <input type="submit" value="Login">
-    </form>
-    <br/>
-    Don't have an account?
-    <br/>
-    <br/>
-    <input type="button" value="Sign up" onclick="window.location.href='/users/new'" >
-    <% if (typeof error !== 'undefined') { %>
-        <p><%= error %></p>
-      <% } %>
-</div>
+    <div class="navbar-container">
+        <%- include('navbar.ejs') %>
+    </div>
+    <div class="login-container">
+        <h1>Login</h1>
+        <div class="login-form-container">
+            <form method="POST" action="/users/login" class="login-form">
+                <div class="form-field">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-field">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-action">
+                    <input type="submit" value="Login" class="login-button">
+                </div>
+            </form>
+            <div class="signup-prompt">
+                Don't have an account?
+                <input type="button" value="Sign up" onclick="window.location.href='/users/signup'" class="signup-button">
+            </div>
+            <% if (typeof error !== 'undefined') { %>
+                <div class="login-error">
+                    <p><%= error %></p>
+                </div>
+            <% } %>
+        </div>
+    </div>
 </body>
 </html>

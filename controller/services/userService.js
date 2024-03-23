@@ -1,6 +1,7 @@
 const User = require('../../model/user');
 
 const createUser = async (userData) => {
+  userData.role = 'admin';
   const user = new User(userData);
   try {
     await user.save();

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Orders</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <h1>All Orders</h1>
+    <ul class="orders-list">
+        <% if (orders && orders.length > 0) { %>
+            <% orders.forEach(function(order) { %>
+                <li class="order-item">
+                    <div class="order-header">
+                        <h2>Order ID: <%= order._id %></h2>
+                        <h3>Total: <%= order.total %> $</h3>
+                        <h2>Name: <%= order.userName %></h2>
+                        <p>Status: <%= order.status %>  </p>
+                    </div>
+                    <ul class="product-list">
+                        <% order.products.forEach(function(product) { %>
+                            <li class="product-item">
+                                <div class="product-details">
+                                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="order-img">
+                                    <h3><%= product.name %></h3>
+                                    <p>Price: <%= product.price %></p>
+                                    <p>Quantity: <%= product.quantity %></p>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <button onclick="location.href='/orders/confirm/<%= order._id %>'">Confirm Order</button>
+                    <button onclick="location.href='/orders/cancel/<%= order._id %>'">Cancel Order</button>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <p>No orders found.</p>
+        <% } %>
+    </ul>
+</body>
+</html>

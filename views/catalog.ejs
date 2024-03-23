@@ -5,24 +5,36 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <%- include('navbar.ejs') %>
-    <h1>Product Catalog</h1>
-    <ul>
-        <% products.forEach(function(product) { %>
-            <li>
-                <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
-                <h2><%= product.name %></h2>
-                <p><%= product.description %></p>
-                <p>Category: <%= product.category %></p>
-                <p>Price: <%= product.price %></p>
-                <% if (session.user) { %>
-                    <form method="POST" action="/cart/add/<%= session.user._id %>">
-                        <input type="hidden" name="productId" value="<%= product._id %>">
-                        <input type="submit" value="Add to Cart">
-                    </form>
-                <% } %>
-            </li>
-        <% }) %>
-    </ul>
+    <div class="navbar-container">
+        <%- include('navbar.ejs') %>
+    </div>
+    <div class="main-content">
+        <h1>Product Catalog</h1>
+        <div class="products-container">
+            <ul class="product-list">
+                <% products.forEach(function(product) { %>
+                    <li class="product-item">
+                        <div class="product-image">
+                            <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                        </div>
+                        <div class="product-details">
+                            <h2><%= product.name %></h2>
+                            <p><%= product.description %></p>
+                            <p>Category: <%= product.category %></p>
+                            <p>Price: <%= product.price %></p>
+                            <% if (session.user) { %>
+                                <div class="add-to-cart-form">
+                                    <form method="POST" action="/cart/add/<%= session.user._id %>">
+                                        <input type="hidden" name="productId" value="<%= product._id %>">
+                                        <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                                    </form>
+                                </div>
+                            <% } %>
+                        </div>
+                    </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

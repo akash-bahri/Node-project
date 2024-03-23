@@ -1,56 +1,344 @@
+/* General Reset */
+body, h1, h2, h3, p, form, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Typography */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Utility classes */
+  .container {
+    max-width: 1000px; /* increased width */
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navbar styling */
+  .navbar-container {
+    margin-bottom: 20px;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333; /* subtle color */
+    color: #ffffff;
+    padding: 10px 20px; /* increased padding for better spacing */
+    border-radius: 8px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px; /* larger padding for links */
+    border-radius: 4px; /* rounded edges for links */
+    transition: background-color 0.3s; /* smooth transition */
+  }
+  
+  .navbar a:hover {
+    background-color: #444; /* subtle hover effect */
+  }
+  
+  /* Form styling */
+  .form-field {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: .5em;
+    color: #666;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="date"],
+  input[type="submit"],
+  input[type="button"] {
+    width: calc(100% - 22px); /* adjusted width to account for padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px; /* added margin */
+  }
+  
+  input[type="submit"],
+  input[type="button"] {
+    background: #5cb85c; /* more vibrant color for actions */
+    color: #ffffff;
+    border: none; /* no border for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s; /* smooth transition */
+  }
+  
+  input[type="submit"]:hover,
+  input[type="button"]:hover {
+    background: #4cae4c; /* darker shade on hover */
+  }
+  
+  /* Error styling */
+  .form-error p {
+    color: #ff0000;
+    margin-top: 10px; /* spacing from the form */
+  }
+  
+  /* Product list styling */
+  .product-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .product-item {
+    background: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 15px; /* increased padding */
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 20px; /* space between image and details */
+  }
+  
+ 
+  
+  .product-details {
+    flex-grow: 1; /* allows the details to fill the space */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .navbar a {
+      padding: 8px 10px; /* smaller padding for mobile */
+    }
+  
+    .product-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  /* Footer note */
+  /* You might want to include a footer for a complete look */
+  footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; /* some space from the content above */
+    background: #333;
+    color: white;
+  }
 
-h1 {
-  color: #333;
-}
-img {
-  width:auto ; /* Adjust as needed */
-  height: 150px;
-}
-
-/* styles.css */
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  height: 100vh;
-  margin: 0;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-input[type="email"], input[type="password"], input[type="text"] {
-  display: block;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  max-width: 300px;
-}
-
-input[type="submit"] , input[type="button"]{
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007BFF;
+  /* Button styling */
+input[type="submit"], .add-to-cart-button {
+  padding: 10px; /* Smaller padding for a smaller button */
+ /* Optional: Adjust font size to suit the button size */
+  background: #5cb85c; /* Adjusted button color for better aesthetics */
   color: white;
+  margin: 5px;
   border: none;
+  border-radius: 40px; /* Slightly rounded corners for the buttons */
   cursor: pointer;
-  width: 100%;
-  max-width: 300px;
+  transition: background-color 0.3s ease; /* Smooth transition for button background color */
 }
-input[type="button"]{
-  background-color: rgb(17, 153, 135);
+
+input[type="submit"]:hover, .add-to-cart-button:hover {
+  background: #4cae4c; /* Slightly darker shade on hover for feedback */
 }
-input[type="button"]:hover{
-  background-color:rgb(1, 119, 88) ;
+
+/* Additional styling for better UX */
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Aligns items vertically center in the flex container */
 }
-input[type="submit"]:hover {
-  background-color: #0056b3;
+
+.product-item .product-details {
+  flex-grow: 1; /* Allows product details to fill the available space */
+  margin-right: 15px; /* Adds margin between the product details and button */
+}
+
+/* Ensure your product image and details are wrapped in a 'product-details' class for the above to take effect */
+/* ... existing styles ... */
+
+/* Adjustments for button sizes */
+.quantity-adjust-button{
+    padding: 20px; /* Smaller padding for a more refined button */
+    font-size: 20px; /* Smaller font size for the buttons */
+    margin: 10px; /* Add margin between quantity buttons */
+    background: #5cb85c; /* Consistent styling with other buttons */
+    border: none; /* Remove default border */
+    border-radius: 100px; /* Rounded corners for the buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+.place-order-button {
+    padding: 20px; /* Smaller padding for a more refined button */
+    font-size: 20px; /* Smaller font size for the buttons */
+    margin: 10px; /* Add margin between quantity buttons */
+    background: #5cb85c; /* Consistent styling with other buttons */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+  }
+  
+  .quantity-adjust-button:hover, .place-order-button:hover {
+    background: #023e61; /* Slightly darker shade on hover */
+  }
+  
+  /* Styling for the image sizes within product items */
+  .product-item img {
+    height: 200px; /* Set a fixed height for consistency */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits well within the dimensions */
+    margin-right: 10px; /* Add some space between image and the product details */
+  }
+  
+  /* Place Order button specific styles */
+  .place-order-button {
+    background: #007bff; /* Different color to distinguish from other actions */
+    color: white; /* Text color for better readability */
+    display: block; /* Block display to span the full width */
+    width: 200px; 
+    padding: 20px;/* Allow the width to auto adjust to the padding and text */
+    margin: 20px auto; /* Center the button in the available space */
+    text-align: center; /* Center the text within the button */
+  }
+  
+  /* Additional styles to enhance the layout */
+  .cart-container, .order-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align the container's items */
+  }
+  
+  /* Responsive styling for smaller screens */
+  .login-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form-container h1 {
+    text-align: center;
+}
+
+.form-field {
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-field input[type="email"],
+.form-field input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Styling for the login and signup buttons */
+.login-button,
+.signup-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.signup-button {
+    background-color: #28a745;
+}
+
+.login-button:hover,
+.signup-button:hover {
+    opacity: 0.9;
+}
+
+/* Error message styling */
+.login-error {
+    color: #ff0000;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Styling for the signup prompt */
+.signup-prompt {
+    text-align: center;
+    margin-top: 20px;
+}
+  
+  /* Ensure your buttons have the classes 'quantity-adjust-button' and 'place-order-button' in your EJS files */
+  
+  /* General styling is already provided in the previous CSS. 
+   Only additional or modified styles for the signup page are included here. */
+
+.user-creation-container {
+    width: 400px; /* Slightly wider to accommodate more form fields */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-creation-form h1 {
+    text-align: center;
+}
+
+/* Use the same .form-field styling from the login page */
+
+/* Input styling - reused from login, ensuring consistency */
+.user-creation-form input[type="text"],
+.user-creation-form input[type="date"],
+.user-creation-form input[type="email"],
+.user-creation-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Button styling, adjusted for the signup context */
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745; /* A green shade to indicate a creation action */
+    color: white;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    opacity: 0.9;
+}
+
+/* Error message styling, keeping it consistent with the login page */
+.form-error {
+    color: #ff0000;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#order-img{
+    height: 85px;
+    width: auto;
 }
