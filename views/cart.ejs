@@ -8,22 +8,30 @@
     <%- include('navbar.ejs') %>
     <h1>Your Shopping Cart</h1>
     <ul>
-        <% cart.products.forEach(function(product) { %>
-            <li>
-                <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
-                <h2><%= product.name %></h2>
-                <p>Price: <%= product.price %></p>
-                <p>Quantity: <%= product.quantity %></p>
-                <form method="POST" action="/cart/add/<%= session.user._id %>">
-                    <input type="hidden" name="productId" value="<%= product.productId %>">
-                    <input type="submit" value="+">
-                </form>
-                <form method="POST" action="/cart/delete/<%= session.user._id %>">
-                    <input type="hidden" name="productId" value="<%= product.productId %>">
-                    <input type="submit" value="-">
-                </form>
-            </li>
-        <% }) %>
+        <% if (cart && cart.products && cart.products.length > 0) { %>
+            <% cart.products.forEach(function(product) { %>
+                <li>
+                    <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                    <h2><%= product.name %></h2>
+                    <p>Price: <%= product.price %></p>
+                    <p>Quantity: <%= product.quantity %></p>
+                    <form method="POST" action="/cart/add/<%= session.user._id %>">
+                        <input type="hidden" name="productId" value="<%= product.productId %>">
+                        <input type="submit" value="+">
+                    </form>
+                    <form method="POST" action="/cart/delete/<%= session.user._id %>">
+                        <input type="hidden" name="productId" value="<%= product.productId %>">
+                        <input type="submit" value="-">
+                    </form>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+        <% } %>
     </ul>
+    <form method="POST" action="/orders/place">
+        <input type="hidden" name="userId" value="<%= session.user._id %>">
+        <button type="submit">Place Order</button>
+    </form>
 </body>
 </html>

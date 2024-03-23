@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 
 // Configure the express-session middleware
 const session = require('express-session'); 
-const oneDay = 1000 * 30;
+const oneDay = 1000 * 60 * 60 * 24;
 app.use(session({
     secret: '76597608687669757',
     resave: false,

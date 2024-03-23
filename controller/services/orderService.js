@@ -10,7 +10,12 @@ const getOrders = async () => {
     return await Order.find({});
 }
 
+//function to get all orders by user id
+const getOrderById = async (userId) => {
+    return await Order.find({ user: userId });
+}
 module.exports = {
     createOrder,
-    getOrders
+    getOrders,
+    getOrderById
 };

@@ -11,8 +11,12 @@ const getCart = async () => {
 }
 
 const getCartById = async (id) => {
-    return await Cart.findById(id);
+    let carts = await Cart.find({});
+    return carts.find(c => c.user === id);
 }
+
+
+
 
 const deleteCart = async (id) => {  
     const cart = await Cart.findByIdAndDelete(id);

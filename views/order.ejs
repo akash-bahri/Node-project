@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Orders</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <h1>Your Orders</h1>
+    <ul>
+        <% if (orders && orders.length > 0) { %>
+            <% orders.forEach(function(order) { %>
+                <li>
+                    <h2>Order ID: <%= order._id %></h2>
+                    <ul>
+                        <% order.products.forEach(function(product) { %>
+                            <li>
+                                <h3><%= product.name %></h3>
+                                <p>Price: <%= product.price %></p>
+                                <p>Quantity: <%= product.quantity %></p>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <p>You have no orders.</p>
+        <% } %>
+    </ul>
+</body>
+</html>

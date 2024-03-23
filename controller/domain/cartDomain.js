@@ -2,15 +2,12 @@ const cartService = require('../services/cartService');
 const productService = require('../services/productService');
 
 const addToCart = async (userId, productId) => {
-    console.log(productId);
     let product = await productService.getProductById(productId);
-    
     if (!product) {
         throw new Error('Product not found');
     }
 
-    let carts = await cartService.getCart();
-    let cart = carts.find(c => c.user === userId);
+    let cart = await cartService.getCartById(userId);
     
     if (!cart) {
         cart = await cartService.createCart({ user: userId, products: [] });
@@ -31,19 +28,18 @@ const addToCart = async (userId, productId) => {
 };
 
 const getCart = async (userId) => {
-    let carts = await cartService.getCart();
-    let cart = carts.find(c => c.user === userId);
-    return cart;
+    return await cartService.getCartById(userId);
 };
 
 const deleteFromCart = async (userId, productId) => {
+    
     let cart = await cartService.getCartById(userId);
 
     if (!cart) {
         throw new Error('Cart not found');
     }
 
-    const productIndex = cart.products.findIndex(p => p.product.toString() === productId);
+    const productIndex = cart.products.findIndex(p => p.productId === productId);
 
     if (productIndex > -1) {
         // Product exists in the cart, decrease quantity

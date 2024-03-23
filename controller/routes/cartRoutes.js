@@ -20,14 +20,25 @@ router.get('/', async (req, res) => {
 // Route to handle the adding of a product to the cart
 router.post('/add/:userId', async (req, res) => {
   try {
-    console.log("--------------------------------------------");
-    console.log(req.body.productId);
-    console.log(req.params.userId);
     if (!req.params.userId || !req.body.productId) {
       // Redirect to product page or show an error
       return res.redirect('/products/catalog');
     }
     await cartDomain.addToCart(req.params.userId,req.body.productId);
+    res.redirect('/cart');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Route to handle the deletion of a product from the cart
+router.post('/delete/:userId', async (req, res) => {
+  try {
+    if (!req.params.userId || !req.body.productId) {
+      // Redirect to product page or show an error
+      return res.redirect('/products/catalog');
+    }
+    await cartDomain.deleteFromCart(req.params.userId,req.body.productId);
     res.redirect('/cart');
   } catch (error) {
     res.status(500).send(error.message);
