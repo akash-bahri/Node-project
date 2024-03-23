@@ -342,7 +342,7 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
     height: 85px;
     width: auto;
 }
-.place-order-button:disabled {
+.place-order-button:disabled:hover , .add-to-cart-button:disabled:hover{
     background-color: #cccccc; /* Grey background for disabled state */
     color: #666666; /* Darker text color for disabled state */
     border: 1px solid #999999; /* Darker border for disabled state */
@@ -363,4 +363,14 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
 #login:hover {
     background-color: green;
     color: white; /* Optional: change text color to white for better visibility */
+}
+
+.newdiv{
+    width: 500px;
+    background-color: #dedede;
+    padding: 10px;
+}
+.div2{
+    background-color: #dedede;
+
 }

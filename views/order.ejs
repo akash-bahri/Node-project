@@ -21,14 +21,16 @@
                         </div>
                         <ul class="product-list">
                             <% order.products.forEach(function(product) { %>
-                                <li class="product-item">
-                                    <div class="product-details">
+                                <div class="newdiv">
+                                <li class="product-item div2">
+                                    <div class="product-details div2">
                                         <img src="<%= product.imageUrl %>" alt="<%= product.name %>" id="order-img">
                                         <h3><%= product.name %></h3>
                                         <p>Price: <%= product.price %></p>
                                         <p>Quantity: <%= product.quantity %></p>
                                     </div>
                                 </li>
+                            </div>
                             <% }) %>
                         </ul>
                     </li>
