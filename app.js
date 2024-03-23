@@ -3,7 +3,7 @@
 
 const express = require('express');
 const app = express();
-app.use(express.static('views'));
+app.use(express.static('public'));
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -24,7 +24,10 @@ app.use(session({
     saveUninitialized: false,
     cookie: { maxAge: oneDay, secure: false, httpOnly: true },
 }));
-
+app.use(function(req, res, next) {
+    res.locals.session = req.session;
+    next();
+  });
 const userRoutes = require('./controller/routes/userRoutes');
 const productRoutes = require('./controller/routes/productRoutes');
 const cartRoutes = require('./controller/routes/cartRoutes');
@@ -36,7 +39,7 @@ app.use('/cart', cartRoutes);
 app.use('/orders', orderRoutes);
 
 app.get('/', function(req, res) {
-    res.render('user');
+    res.render('index');
 });
 
 

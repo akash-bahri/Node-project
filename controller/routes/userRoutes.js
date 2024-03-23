@@ -1,6 +1,8 @@
 const express = require('express');
 const userService = require('../services/userService.js');
+const userDomain = require('../domain/userDomain.js');
 const router = express.Router();
+
 
 // Route to display the form for creating a new user
 router.get('/new', (req, res) => {
@@ -8,14 +10,13 @@ router.get('/new', (req, res) => {
 });
 
 // Route to handle the creation of a new user
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
   try {
-    req.body.active = req.body.active === 'on';
-    // console.log("1: "+JSON.stringify(req.body));
-    await userService.createUser(req.body);
+    let user = await userService.createUser(req.body);
+    req.session.user = user;
     res.redirect('/users');
   } catch (error) {
-    res.status(400).send(error.message);
+    res.render('newuser', { error: error.message });
   }
 });
 
@@ -29,6 +30,20 @@ router.get('/', async (req, res) => {
     res.status(500).send(error.message);
   }
 });
+// Route to handle the login form
+
+  router.post('/login', async (req, res) => {
+    const user = await userDomain.login(req.body.email, req.body.password);
+    
+    if (!user) {
+      return res.render('login',{error:"Invalid email or password"});
+      
+    }
+    
+    req.session.user = user;
+    req.session.views = 1;
+    res.redirect('/users');
+  });   
 
 // Route to display the form for editing a user
 router.get('/edit/:id', async (req, res) => {
@@ -69,17 +84,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// Route to handle the login form
-router.post('/login', async (req, res) => {
-  try {
-    const user = await userService.loginUser(req.body);
-    req.session.user = user;
-    req.session.views = 1;
-    res.redirect('/users');
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
+
 
 // Route to display the signup form
 router.get('/signup', (req, res) => {

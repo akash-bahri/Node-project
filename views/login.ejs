@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <h1>Login</h1>
+    <div>
+    <form method="POST" action="/users/login">
+        Email: <input type="email" name="email" required><br>
+        Password: <input type="password" name="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <br/>
+    Don't have an account?
+    <br/>
+    <br/>
+    <input type="button" value="Sign up" onclick="window.location.href='/users/new'" >
+    <% if (typeof error !== 'undefined') { %>
+        <p><%= error %></p>
+      <% } %>
+</div>
+</body>
+</html>

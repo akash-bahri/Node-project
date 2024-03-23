@@ -12,6 +12,7 @@ router.get('/new', (req, res) => {
 router.get('/catalog', async (req, res) => {
     try {
       req.session.views++;
+      console.log("session views: "+req.session.views);
       const products = await productService.getAllProducts();
       res.render('catalog', { products });
     } catch (error) {

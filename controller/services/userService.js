@@ -2,8 +2,15 @@ const User = require('../../model/user');
 
 const createUser = async (userData) => {
   const user = new User(userData);
-  await user.save();
-  return user;
+  try {
+    await user.save();
+    return user;
+  } catch (error) {
+    if (error.code === 11000) {
+      throw new Error('Email already exists');
+    }
+    throw error;
+  }
 };
 
 const getAllUsers = async () => {
@@ -35,6 +42,8 @@ const deleteUser = async (id) => {
   }
   return user;
 };
+
+
 
 module.exports = {
   createUser,
