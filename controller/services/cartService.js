@@ -10,6 +10,10 @@ const getCart = async () => {
     return await Cart.find({});
 }
 
+const getCartById = async (id) => {
+    return await Cart.findById(id);
+}
+
 const deleteCart = async (id) => {  
     const cart = await Cart.findByIdAndDelete(id);
     if (!cart) {
@@ -20,5 +24,7 @@ const deleteCart = async (id) => {
 
 module.exports = {
     createCart,
-    getCart
+    getCart,
+    getCartById,
+    deleteCart
 };

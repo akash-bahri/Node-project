@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 
 const login = async (email, password) => {
   let userData = await userService.getAllUsers();
-  //console.log(JSON.stringify(userData));
   let validUser = userData.find((user) => user.email === email);
   console.log(validUser);
   if (!validUser) {

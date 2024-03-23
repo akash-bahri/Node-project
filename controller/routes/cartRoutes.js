@@ -1,15 +1,16 @@
 const express = require('express');
 const cartService = require('../services/cartService');
 const router = express.Router();
+const cartDomain = require('../domain/cartDomain');
 
 
 // Add other routes as needed
 
 // Route to display the cart
-router.get('/:userId', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-      req.session.views++;
-      const cart = await  cartService.getCart();
+      
+      const cart = await cartDomain.getCart(req.session.user._id);
       res.render('cart', { cart });
     } catch (error) {
       res.status(500).send(error.message);
@@ -17,14 +18,21 @@ router.get('/:userId', async (req, res) => {
   });
 
 // Route to handle the adding of a product to the cart
-router.post('/:userId', async (req, res) => {
-    try {
-      await cartService.addToCart(req.body);
-        res.redirect('/cart');
-    } catch (error) {
-        res.status(400).send(error.message);
+router.post('/add/:userId', async (req, res) => {
+  try {
+    console.log("--------------------------------------------");
+    console.log(req.body.productId);
+    console.log(req.params.userId);
+    if (!req.params.userId || !req.body.productId) {
+      // Redirect to product page or show an error
+      return res.redirect('/products/catalog');
     }
-} );
+    await cartDomain.addToCart(req.params.userId,req.body.productId);
+    res.redirect('/cart');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 
 

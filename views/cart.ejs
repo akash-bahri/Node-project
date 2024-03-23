@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <h1>Your Shopping Cart</h1>
+    <ul>
+        <% cart.products.forEach(function(product) { %>
+            <li>
+                <img src="<%= product.imageUrl %>" alt="<%= product.name %>">
+                <h2><%= product.name %></h2>
+                <p>Price: <%= product.price %></p>
+                <p>Quantity: <%= product.quantity %></p>
+                <form method="POST" action="/cart/add/<%= session.user._id %>">
+                    <input type="hidden" name="productId" value="<%= product.productId %>">
+                    <input type="submit" value="+">
+                </form>
+                <form method="POST" action="/cart/delete/<%= session.user._id %>">
+                    <input type="hidden" name="productId" value="<%= product.productId %>">
+                    <input type="submit" value="-">
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

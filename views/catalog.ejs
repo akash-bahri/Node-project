@@ -16,7 +16,7 @@
                 <p>Category: <%= product.category %></p>
                 <p>Price: <%= product.price %></p>
                 <% if (session.user) { %>
-                    <form method="POST" action="/cart/<%= session.user._id %>">
+                    <form method="POST" action="/cart/add/<%= session.user._id %>">
                         <input type="hidden" name="productId" value="<%= product._id %>">
                         <input type="submit" value="Add to Cart">
                     </form>
