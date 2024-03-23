@@ -22,7 +22,7 @@
                             <p><%= product.description %></p>
                             <p>Category: <%= product.category %></p>
                             <p>Price: <%= product.price %></p>
-                            <% if (session.user) { %>
+                            <% if (session.user && session.user.role === 'user') { %>
                                 <div class="add-to-cart-form">
                                     <form method="POST" action="/cart/add/<%= session.user._id %>">
                                         <input type="hidden" name="productId" value="<%= product._id %>">

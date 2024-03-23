@@ -43,7 +43,7 @@
         <div class="order-placement">
             <form method="POST" action="/orders/place" class="place-order-form">
                 <input type="hidden" name="userId" value="<%= session.user._id %>">
-                <button type="submit" class="place-order-button">Place Order</button>
+                <button type="submit" class="place-order-button" <% if (!cart || cart.products.length === 0) { %> disabled <% } %>>Place Order</button>
             </form>
         </div>
     </div>
