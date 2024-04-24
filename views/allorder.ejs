@@ -31,7 +31,7 @@
                         <% }) %>
                     </ul>
                     <button class="add-to-cart-button" onclick="location.href='/orders/confirm/<%= order._id %>'" <% if (order.status === 'Confirmed') { %> disabled <% } %>>Confirm Order</button>
-                    <button class="add-to-cart-button" onclick="location.href='/orders/cancel/<%= order._id %>'">Cancel Order</button>
+                    <button class="add-to-cart-button delete" onclick="location.href='/orders/cancel/<%= order._id %>'">Cancel Order</button>
                 </li>
             <% }) %>
         <% } else { %>

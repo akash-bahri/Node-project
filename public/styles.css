@@ -152,7 +152,7 @@ input[type="submit"], .add-to-cart-button {
 }
 
 input[type="submit"]:hover, .add-to-cart-button:hover {
-  background: #4cae4c; /* Slightly darker shade on hover for feedback */
+  background: #0095ff; /* Slightly darker shade on hover for feedback */
 }
 
 /* Additional styling for better UX */
@@ -175,7 +175,7 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
     padding: 20px; /* Smaller padding for a more refined button */
     font-size: 20px; /* Smaller font size for the buttons */
     margin: 10px; /* Add margin between quantity buttons */
-    background: #5cb85c; /* Consistent styling with other buttons */
+    background: #228622; /* Consistent styling with other buttons */
     border: none; /* Remove default border */
     border-radius: 100px; /* Rounded corners for the buttons */
     cursor: pointer;
@@ -192,8 +192,8 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
     transition: background-color 0.3s ease; /* Smooth transition */
   }
   
-  .quantity-adjust-button:hover, .place-order-button:hover {
-    background: #023e61; /* Slightly darker shade on hover */
+  .quantity-adjust-button:hover {
+    background: #00ff48; /* Slightly darker shade on hover */
   }
   
   /* Styling for the image sizes within product items */
@@ -206,7 +206,7 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
   
   /* Place Order button specific styles */
   .place-order-button {
-    background: #007bff; /* Different color to distinguish from other actions */
+    background: #0059b9; /* Different color to distinguish from other actions */
     color: white; /* Text color for better readability */
     display: block; /* Block display to span the full width */
     width: 200px; 
@@ -342,7 +342,7 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
     height: 85px;
     width: auto;
 }
-.place-order-button:disabled:hover , .add-to-cart-button:disabled:hover{
+#place-order-button:disabled:hover , .add-to-cart-button:disabled:hover{
     background-color: #cccccc; /* Grey background for disabled state */
     color: #666666; /* Darker text color for disabled state */
     border: 1px solid #999999; /* Darker border for disabled state */
@@ -374,3 +374,11 @@ input[type="submit"]:hover, .add-to-cart-button:hover {
     background-color: #dedede;
 
 }
+
+.delete:hover{
+    background-color: rgb(178, 0, 0);
+}
+
+#place-order-button:hover {
+    background: #00a2ff; /* Slightly darker shade on hover */
+  }

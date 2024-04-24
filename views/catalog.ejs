@@ -30,6 +30,13 @@
                                     </form>
                                 </div>
                             <% } %>
+                            <% if (session.user && session.user.role === 'admin') { %>
+                                <div class="add-to-cart-form">
+                                    <form method="GET" action="/products/delete/<%= product._id %>">
+                                        <button type="submit" class="add-to-cart-button delete">Delete Product</button>
+                                    </form>
+                                </div>
+                            <% } %>
                         </div>
                     </li>
                 <% }) %>

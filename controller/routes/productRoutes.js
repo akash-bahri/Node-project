@@ -32,4 +32,20 @@ router.post('/', async (req, res) => {
     }
 } );
 
+// Route to display the form for editing a product
+router.get('/delete/:id', async (req, res) => {
+   try {
+    console.log(req.params.id);
+      const product = await productService.deleteProduct(req.params.id);
+      if (!product) {
+        return res.status(404).send("Product not found");
+      }
+      res.redirect('/products/catalog');
+
+   }
+    catch (error) {
+      res.status(500).send(error.message);
+}
+});
+
 module.exports = router;
