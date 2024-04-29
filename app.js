@@ -11,7 +11,9 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://akashbahri90:wi5ULQterlZTWkaN@cluster0.u97s9sw.mongodb.net/Node');
+const mongoDbPassword = 'wi5ULQterlZTWkaN';
+mongoose.connect('mongodb+srv://akashbahri90:' + mongoDbPassword + '@cluster0.u97s9sw.mongodb.net/Node');
+//mongoose.connect('mongodb+srv://akashbahri90:wi5ULQterlZTWkaN@cluster0.u97s9sw.mongodb.net/Node');
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
